@@ -1,0 +1,81 @@
+<div class="w-full mb-[80px]">
+  <div class="h-[65px] fixed left-0 right-0 top-0 bg-gray-100 py-2 z-50">
+    <div class="div-container flex items-center">
+      <img
+        src="/assets/images/logo-no-background.svg"
+        class="w-[80px] object-cover cursor-pointer ml-[-10px]"
+        routerLink=""
+      />
+      <ul class="list-none flex items-center gap-2">
+        <li
+          routerLinkActive="active text-gray-950 font-bold"
+          routerLink="/"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="router-link cursor-pointer text-xl text-gray-500 hover:text-gray-950 transition-colors text-[16px] font-normal"
+        >
+          Home
+        </li>
+        <li
+          routerLinkActive="active text-gray-950 font-bold"
+          routerLink="/shopping-cart"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="router-link mr-7 cursor-pointer text-xl text-gray-500 hover:text-gray-950 transition-colors text-[16px] font-normal"
+        >
+          <div class="relative">
+            <p>Shopping Cart</p>
+            <div
+              class="text-[10px] w-[20px] h-[20px] flex justify-center items-center rounded-full bg-orange-500 text-white absolute right-[-21px] bottom-[10px]"
+            >
+              {{ (cart$ | async)?.totalItemsCount || 0 | maxNumber : 99 }}
+            </div>
+          </div>
+        </li>
+      </ul>
+      <div *ngIf="loading; else menu" #loading_menu>
+        <mat-spinner diameter="30"></mat-spinner>
+      </div>
+      <ng-template #menu>
+        <button
+          *ngIf="!user"
+          mat-raised-button
+          color="primary"
+          (click)="loginWithGoogle()"
+        >
+          Log In
+        </button>
+        <div *ngIf="user">
+          <button
+            [matMenuTriggerFor]="afterMenu"
+            class="hover:bg-gray-200 transition-colors p-2 rounded-xl flex items-center"
+          >
+            {{ user.name || "Username" }}
+            <mat-icon>keyboard_arrow_down</mat-icon>
+          </button>
+          <mat-menu #afterMenu="matMenu" xPosition="after">
+            <button mat-menu-item routerLink="/my/orders">My Orders</button>
+            <button
+              *ngIf="user.isAdmin"
+              mat-menu-item
+              routerLink="/admin/orders"
+            >
+              Manage Orders
+            </button>
+            <button
+              *ngIf="user.isAdmin"
+              mat-menu-item
+              routerLink="/admin/products"
+            >
+              Manage Products
+            </button>
+            <button *ngIf="user" mat-menu-item (click)="logOut()">
+              Log Out
+            </button>
+            <button *ngIf="!user" mat-menu-item (click)="loginWithGoogle()">
+              Log In
+            </button>
+          </mat-menu>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

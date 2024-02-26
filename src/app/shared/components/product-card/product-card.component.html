@@ -1,0 +1,36 @@
+<mat-card class="example-card">
+  <img
+    mat-card-image
+    [src]="product?.imageUrl"
+    [alt]="'Image of ' + product?.title"
+    class="object-cover h-[400px]"
+  />
+  <mat-card-header>
+    <mat-card-title>{{ product?.title }}</mat-card-title>
+    <mat-card-subtitle>{{
+      product?.price | currency : "USD"
+    }}</mat-card-subtitle>
+    <mat-card-subtitle>
+      <button mat-stroked-button color="primary" class="mt-2">
+        {{ product?.category }}
+      </button>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-footer>
+    <button
+      *ngIf="!getQuantity(); else updateQuantity"
+      mat-raised-button
+      color="primary"
+      class="w-full text-center mt-4"
+      (click)="addToCart()"
+    >
+      Add to Cart
+    </button>
+    <ng-template #updateQuantity>
+      <product-quantity
+        [product]="product"
+        [shopping-cart]="shoppingCart"
+      ></product-quantity>
+    </ng-template>
+  </mat-card-footer>
+</mat-card>

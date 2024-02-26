@@ -1,0 +1,31 @@
+<div class="div-container pb-20">
+  <products-filter
+    [products]="products"
+    (filterChanged)="filterChange($event)"
+  ></products-filter>
+  <div
+    class="mt-6 grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))]"
+    *ngIf="!loadingCarts"
+  >
+    <product-card
+      *ngFor="let product of filteredProducts"
+      [product]="product"
+      [shopping-cart]="cart"
+    ></product-card>
+  </div>
+  <div
+    class="mt-6 grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))]"
+    *ngIf="loadingCarts"
+  >
+    <ngx-skeleton-loader
+      *ngFor="let loadingElement of loadingElements"
+      count="1"
+      appearance="line"
+      animation="pulse"
+      [theme]="{
+        height: '500px',
+        cursor: 'pointer'
+      }"
+    />
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="border-gray-300 border-[2px] rounded-xl p-4" *ngIf="cart">
+  <h2>Order Summary</h2>
+  <p class="!mb-4">
+    You have {{ cart.totalItemsCount }} items in your shopping cart.
+  </p>
+
+  <div
+    *ngFor="let item of cart.items"
+    class="py-2 px-1 border-t-gray-300 border-t-[2px] flex items-center justify-between w-full"
+  >
+    <p>{{ item.quantity }} x {{ item.product.title }}</p>
+    <p>{{ item.totalPrice | currency : "USD" }}</p>
+  </div>
+
+  <div
+    class="px-1 py-2 border-t-gray-300 border-t-[2px] flex items-cente justify-between w-full"
+  >
+    <h2 class="font-bold text-orange-400">Total</h2>
+    <h2 class="font-bold text-orange-400">
+      {{ cart.getTotalPrice() | currency : "USD" }}
+    </h2>
+  </div>
+</div>

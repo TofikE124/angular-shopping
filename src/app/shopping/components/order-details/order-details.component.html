@@ -1,0 +1,55 @@
+<div class="div-container" *ngIf="order$ | async as order">
+  <div class="text-center w-full">
+    <h1 class="text-orange-400">Order details</h1>
+    <h5 class="text-orange-300">Order ID ({{ order.key }})</h5>
+  </div>
+  <div class="grid grid-cols-2 mt-2">
+    <div class="flex flex-col">
+      <h3>Order Date: {{ getDate(order.datePlaced) }}</h3>
+
+      <div class="flex flex-col w-[90%]">
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput [value]="order.shipping.name" disabled />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Phone</mat-label>
+          <input matInput [value]="order.shipping.phone" disabled />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <input matInput [value]="order.shipping.city" disabled />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Street</mat-label>
+          <input matInput [value]="order.shipping.street" disabled />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="">
+      <div class="border-gray-300 border-[2px] rounded-xl p-4">
+        <h2>Order Summary</h2>
+        <p class="!mb-4">
+          This order contains {{ order.totalItemsCount }} items.
+        </p>
+
+        <div
+          *ngFor="let item of order.items"
+          class="py-2 px-1 border-t-gray-300 border-t-[2px] flex items-center justify-between w-full"
+        >
+          <p>{{ item.quantity }} x {{ item.product.title }}</p>
+          <p>{{ item.totalPrice | currency : "USD" }}</p>
+        </div>
+
+        <div
+          class="px-1 py-2 border-t-gray-300 border-t-[2px] flex items-cente justify-between w-full"
+        >
+          <h2 class="font-bold text-orange-400">Total</h2>
+          <h2 class="font-bold text-orange-400">
+            {{ order.getTotalPrice() | currency : "USD" }}
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

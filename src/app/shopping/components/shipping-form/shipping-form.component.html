@@ -1,0 +1,43 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="placeOrder(form.value)"
+  class="flex flex-col mt-4"
+>
+  <mat-form-field subscriptSizing="dynamic">
+    <mat-label>Name</mat-label>
+    <input formControlName="name" matInput placeholder="e.g. Emily Johnson" />
+    <mat-error *ngIf="name.touched && name.invalid">{{
+      getErrorMessage(name, "Name")
+    }}</mat-error>
+  </mat-form-field>
+  <mat-form-field subscriptSizing="dynamic">
+    <mat-label>Phone</mat-label>
+    <input formControlName="phone" matInput placeholder="e.g. +1234567890" />
+    <mat-error *ngIf="phone.touched && phone.invalid">{{
+      getErrorMessage(phone, "Phone")
+    }}</mat-error>
+  </mat-form-field>
+  <mat-form-field subscriptSizing="dynamic">
+    <mat-label>City</mat-label>
+    <input formControlName="city" matInput placeholder="e.g. Los Angeles" />
+    <mat-error *ngIf="city.touched && city.invalid">{{
+      getErrorMessage(city, "City")
+    }}</mat-error>
+  </mat-form-field>
+  <mat-form-field subscriptSizing="dynamic">
+    <mat-label>Street</mat-label>
+    <input formControlName="street" matInput placeholder="e.g. 456 Elm St" />
+    <mat-error *ngIf="street.touched && street.invalid">{{
+      getErrorMessage(street, "Street")
+    }}</mat-error>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    class="w-fit"
+    [disabled]="!form.valid"
+  >
+    Check Out
+  </button>
+</form>

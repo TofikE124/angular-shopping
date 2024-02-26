@@ -1,0 +1,21 @@
+.router-link {
+  position: relative;
+  transition: color 200ms ease-out;
+}
+.router-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  background-color: orange;
+  height: 2px;
+  transform-origin: center;
+  scale: 0% 100%;
+  transition: scale 200ms ease-out;
+}
+
+.router-link.active::after,
+.router-link:hover::after {
+  scale: 100% 100%;
+}

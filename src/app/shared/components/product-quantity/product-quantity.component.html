@@ -1,0 +1,21 @@
+<div
+  class="flex justify-between items-center bg-gray-100 px-1 py-2 rounded-t-lg mt-4"
+>
+  <button
+    mat-mini-fab
+    color="primary"
+    class="text-[50px]"
+    (click)="removeFromCart()"
+  >
+    -
+  </button>
+  <h3>{{ getQuantity() }} in cart</h3>
+  <button
+    mat-mini-fab
+    color="primary"
+    class="text-[30px]"
+    (click)="addToCart()"
+  >
+    +
+  </button>
+</div>

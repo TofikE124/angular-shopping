@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-shopping-8a56d": {
+      "hosting": {
+        "angular-shopping": [
+          "angular-shopping-8a56d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-shopping-8a56d"
+  }
+}
