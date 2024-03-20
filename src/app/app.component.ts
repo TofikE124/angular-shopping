@@ -30,7 +30,7 @@ export class AppComponent {
         if (returnUrl) {
           localStorage.removeItem('returnUrl');
           localStorage.removeItem('returnQueryParams');
-          router.navigate([returnUrl], { queryParams: returnQueryParamns });
+        router.navigate([returnUrl], { queryParams: returnQueryParamns });
         }
       }
     });

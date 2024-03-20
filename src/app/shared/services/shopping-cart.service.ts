@@ -45,7 +45,6 @@ export class ShoppingCartService {
   async addItem(product: Product) {
     if (!this.user) this.authService.signInWithPopUp('/', this.queryParams);
     else {
-      console.log(product);
       this.addToCart(product);
     }
   }

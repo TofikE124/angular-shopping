@@ -20,11 +20,17 @@ import {
   ShoppingSortingStrategy,
   ShoppingTitleSortingStrategy,
 } from '../shopping-sorting-strategy';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'shopping-cart-table',
   standalone: true,
-  imports: [AngularComponentsModule, CommonModule, ProductQuantityComponent],
+  imports: [
+    AngularComponentsModule,
+    CommonModule,
+    ProductQuantityComponent,
+    RouterModule,
+  ],
   templateUrl: './shopping-cart-table.component.html',
   styleUrl: './shopping-cart-table.component.css',
 })
